@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/60910c192f.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/logo.jpg" type="image/jpg">
+    <title>Login | Banco Makiabelico</title>
+</head>
+<body>
+
+<section>
+    <div class="contenedor">
+        <img src="img/logo.jpg" class="logo">
+        <div class="formulario">
+            <form method="POST" action="validar_sesion.php">
+                <br>
+                <br>
+                <h2>Inicio de Sesión</h2>
+
+                <div class="input-contenedor">
+                    <i class="fa-solid fa-envelope fa-fade" style="color: #ffffff;"></i>
+                    <input type="email" name="Email" required>
+                    <label for="email">Email</label>
+                </div>
+
+                <div class="input-contenedor">
+                    <i class="fa-solid fa-lock fa-shake" style="color: #ffffff;"></i>
+                    <input type="password" name="passsword" required>
+                    <label for="contraseña">Contraseña</label>
+                </div>
+                <div>
+                    <button type="submit" >Acceder</button>
+                    <div class="registrar">
+                        <p>No tengo una cuenta! <a href="register.html">Registrarme</a></p>
+                    </div>
+                </div>
+
+            </form>
+
+            <div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Hide the GIF and show the PNG image after 3 seconds
+    setTimeout(function () {
+        document.querySelector('.logo-png').style.display = 'block';
+    }, 5000);
+</script>
+
+</body>
+</html>

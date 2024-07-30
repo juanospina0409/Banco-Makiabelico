@@ -15,40 +15,47 @@
             <img src="img/logo.jpg" class="logo">
             <div class="formulario">
 
-                <?php
-                include 'connection.php';
+            <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    $email = $_POST['Email'];
-                    $passsword = $_POST['passsword'];
+include 'connection.php';
 
-                    $sql = "SELECT Nombre, Apellido FROM clientes WHERE Email = ? AND passsword = ?";
-                    $stmt = $conexion->prepare($sql);
-                    $stmt->bind_param("ss", $email, $passsword);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['Email'];
+    $passsword = $_POST['passsword'];
 
-                    if ($result->num_rows > 0) {
-                        $user = $result->fetch_assoc();
-                        $nombre = $user['Nombre'];
-                        $apellido = $user['Apellido'];
+    $sql = "SELECT Nombre, Apellido FROM clientes WHERE Email = ? AND passsword = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("ss", $email, $passsword);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-                    } else {
-                        echo '
-                        <script>
-                        alert("Error de registro. Inténtelo de nuevo.");
-                        window.location = "index.html";
-                        </script>
-                    ';
-                    }
+    if ($result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        $nombre = $user['Nombre'];
+        $apellido = $user['Apellido'];
+        echo "<h2>Bienvenid@ {$nombre} {$apellido} al Banco Makiabelico</h2>";
+    } else {
+        echo '
+        <script>
+        alert("Error de registro. Inténtelo de nuevo.");
+        window.location = "index.html";
+        </script>
+        ';
+    }
 
-                    $stmt->close();
-                }
+    $stmt->close();
+    $conexion->close();
+} else {
+    echo 'Método no permitido';
+}
+?>
 
-                ?>
+
 
             </div>
-            <h2>Bienvenid@ <?php echo $nombre; echo " "; echo $apellido ?> al Banco Makiabelico</h2>
             
             <a href="index.html"><button class="exit">Cerrar Sesión</button></a>
         </div>

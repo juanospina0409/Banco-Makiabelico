@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,7 +15,7 @@
             <img src="img/logo.jpg" class="logo">
             <div class="formulario">
 
-            <?php
+            <php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     echo 'Método no permitido';
 }
-?>
+>
 
 
 
@@ -61,4 +61,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </section>
 </body>
-</html>
+</html -->
+
+
+
+<!-- filepath: /d:/xampp/htdocs/Banco-Makiabelico/validar_sesion.php-->
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Incluir el archivo de conexión
+    require 'connection.php';
+
+    // Obtener los datos del formulario
+    $email = $_POST['Email'];
+    $password = $_POST['passsword'];
+
+    // Consulta para verificar el usuario
+    $sql = "SELECT * FROM usuarios WHERE email = '$email' AND password = '$password'";
+    $result = $conexion->query($sql);
+
+    if ($result->num_rows > 0) {
+        // Usuario encontrado, iniciar sesión
+        echo "Inicio de sesión exitoso";
+    } else {
+        // Usuario no encontrado
+        echo "Email o contraseña incorrectos";
+    }
+
+    // Cerrar conexión
+    $conexion->close();
+} else {
+    // Método no permitido
+    http_response_code(405);
+    echo "Method Not Allowed";
+}
+?>

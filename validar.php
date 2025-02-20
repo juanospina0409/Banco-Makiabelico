@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['Email'];
     $passsword = $_POST['passsword'];
 
-    $sql = "INSERT INTO clientes (Cedula, Nombre, Apellido, Direccion, Telefono, Email, passsword) 
+    $sql = "INSERT INTO clientes (cedula, nombre, apellido, direccion, telefono, email, passsword) 
             VALUES ('$cedula', '$nombre', '$apellido', '$direccion', '$telefono', '$email', '$passsword')";
 
     if ($conexion->query($sql) === TRUE) {
